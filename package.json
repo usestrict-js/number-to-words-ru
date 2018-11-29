@@ -1,0 +1,32 @@
+{
+  "name": "@lexantus/number-to-words-ru",
+  "version": "1.0.0",
+  "description": "Convert float, int numbers into words on russian language",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lexantus/number-to-words-ru.git"
+  },
+  "keywords": [
+    "convert",
+    "number",
+    "russian",
+    "ru",
+    "digit",
+    "decimal",
+    "string",
+    "number-to-string"
+  ],
+  "author": "Rozhin Alexey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lexantus/number-to-words-ru/issues"
+  },
+  "homepage": "https://github.com/lexantus/number-to-words-ru#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
