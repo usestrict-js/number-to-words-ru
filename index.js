@@ -85,7 +85,8 @@ const convert = (num) => {
         return `${_100_900.get(num100 * 100)}${str10}${str1}`;
     }
 
-    const _10e = ('' + num).length - 1;
+    let _10e = ('' + num).length - 1;
+    if (_10e > 3) _10e = 3;
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
     let ind;
@@ -99,7 +100,9 @@ const convert = (num) => {
     let digitStr;
     if (digit === 1 && _10e === 3) digitStr = 'одна';
     if (digit === 2 && _10e === 3) digitStr = 'две';
-    if (digit > 2) digitStr = _0_19.get(digit);
+    if (digit > 2 && digit < 20) digitStr = _0_19.get(digit);
+    if (digit >= 20 && digit < 100) digitStr = _20_90.get(digit);
+    if (digit >= 100) digitStr = _100_900.get(digit);
 
     let restString = '';
     if (rest !== 0) {
