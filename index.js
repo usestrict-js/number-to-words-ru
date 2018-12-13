@@ -52,7 +52,7 @@ const convert = (num) => {
     }
 
     let _10e = ('' + num).length - 1;
-    if (_10e > 3) _10e = 3;
+    // if (_10e > 3) _10e = 3;
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
     let ind;
@@ -73,7 +73,18 @@ const convert = (num) => {
 
 
     if (digit > 2 && numRest1_rep && numRest2_rep) {
-        digitStr += `${convert(numRest1_rep)} ${convert(numRest2_rep)}`;
+        let rest2Str = '';
+        ind = 2;
+        if (numRest2_rep === 1 && _10e === 3) {
+            rest2Str = 'одна';
+            ind = 0;
+        }
+        if (numRest2_rep === 2 && _10e === 3) {
+            rest2Str = 'две';
+            ind = 1;
+        }
+        if (numRest2_rep > 2) rest2Str = convert(numRest2_rep);
+        digitStr += `${convert(numRest1_rep)} ${rest2Str}`;
     }
 
     if (digit > 2 && numRest1_rep && !numRest2_rep) {

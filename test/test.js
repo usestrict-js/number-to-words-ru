@@ -144,6 +144,7 @@ describe('DIGIT 4', () => {
 
 describe('DIGIT 5', () => {
     it('10000', () => {assert.equal(convert(10000), 'десять тысяч')});
+    it('10001', () => {assert.equal(convert(10001), 'десять тысяч один')});
     it('20000', () => {assert.equal(convert(20000), 'двадцать тысяч')});
     it('30000', () => {assert.equal(convert(30000), 'тридцать тысяч')});
     it('40000', () => {assert.equal(convert(40000), 'сорок тысяч')});
@@ -152,6 +153,7 @@ describe('DIGIT 5', () => {
     it('70000', () => {assert.equal(convert(70000), 'семьдесят тысяч')});
     it('80000', () => {assert.equal(convert(80000), 'восемьдесят тысяч')});
     it('82000', () => {assert.equal(convert(82000), 'восемьдесят две тысячи')});
+    it('82322', () => {assert.equal(convert(82322), 'восемьдесят две тысячи триста двадцать два')});
     it('85001', () => {assert.equal(convert(85001), 'восемьдесят пять тысяч один')});
     it('90000', () => {assert.equal(convert(90000), 'девяносто тысяч')});
     it('90999', () => {assert.equal(convert(90999), 'девяносто тысяч девятьсот девяносто девять')});
@@ -161,12 +163,16 @@ describe('DIGIT 5', () => {
 
 describe('DIGIT 6', () => {
     it('100000', () => {assert.equal(convert(100000), 'сто тысяч')});
+    it('100001', () => {assert.equal(convert(100001), 'сто тысяч один')});
     it('100201', () => {assert.equal(convert(100201), 'сто тысяч двести один')});
     it('102201', () => {assert.equal(convert(102201), 'сто две тысячи двести один')});
+    it('191021', () => {assert.equal(convert(191021), 'сто девяносто одна тысяча двадцать один')});
+    it('303303', () => {assert.equal(convert(303303), 'триста три тысячи триста три')});
 });
 
 describe('DIGIT 7', () => {
     it('1000000', () => {assert.equal(convert(1000000), 'один миллион')});
+    it('1000001', () => {assert.equal(convert(1000001), 'один миллион один')});
     it('2000000', () => {assert.equal(convert(2000000), 'два миллиона')});
     it('7000000', () => {assert.equal(convert(7000000), 'семь миллионов')});
 });
