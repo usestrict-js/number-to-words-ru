@@ -174,6 +174,7 @@ describe('DIGIT 7', () => {
     it('1000000', () => {assert.equal(convert(1000000), 'один миллион')});
     it('1000001', () => {assert.equal(convert(1000001), 'один миллион один')});
     it('2000000', () => {assert.equal(convert(2000000), 'два миллиона')});
+    it('3000000', () => {assert.equal(convert(3000000), 'три миллиона')});
     it('7000000', () => {assert.equal(convert(7000000), 'семь миллионов')});
 });
 

@@ -52,6 +52,7 @@ const convert = (num) => {
     }
 
     let _10e = ('' + num).length - 1;
+    while (!_10e3_10e33.has(_10e)) _10e --;
     // if (_10e > 3) _10e = 3;
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
