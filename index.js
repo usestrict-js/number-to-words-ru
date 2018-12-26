@@ -24,12 +24,17 @@ const _10e3_10e33 = new Map([
     [33, ['дециллион', 'дециллиона', 'дециллионов']]
 ]);
 
-const convert = (num) => {
+const convert = (num, recursive) => {
     if (num < 20) return _0_19.get(num);
     if (num < 100) {
         const mod10 = num % 10;
         const num10 = Math.floor(num / 10);
-        const str = mod10 === 0 ? '' : ` ${_0_19.get(mod10)}`;
+        let str = '';
+        if (mod10 === 1 && recursive) {
+            str = ' одна';
+        } else {
+            str = mod10 === 0 ? '' : ` ${_0_19.get(mod10)}`;
+        }
         return `${_20_90.get(num10 * 10)}${str}`;
     }
     if (num < 1000) {
@@ -46,27 +51,28 @@ const convert = (num) => {
 
         let str1 = '';
         if (mod100 < 20 && mod100 !== 0) {
-            str1 = ` ${_0_19.get(mod100)}`
+            str1 = ` ${_0_19.get(mod100)}`;
         }
         return `${_100_900.get(num100 * 100)}${str10}${str1}`;
     }
 
     let _10e = ('' + num).length - 1;
     while (!_10e3_10e33.has(_10e)) _10e --;
-    // if (_10e > 3) _10e = 3;
+
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
-    let ind;
-    if (digit === 1) {
+
+    let lastDigit = digit % 10;
+    if (lastDigit === 1) {
         ind = 0;
-    } else if (digit < 5) {
+    } else if (lastDigit < 5) {
         ind = 1;
     } else {
         ind = 2;
     }
     let digitStr = '';
-    if (digit === 1 && _10e === 3) digitStr = 'одна';
-    if (digit === 2 && _10e === 3) digitStr = 'две';
+    if (digit === 1 && _10e >= 3) digitStr = 'одна';
+    if (digit === 2 && _10e >= 3) digitStr = 'две';
 
     let _10e_rep = ('' + digit).length - 1;
     let numRest2_rep = +('' + digit).substr(1, _10e_rep);
@@ -75,21 +81,21 @@ const convert = (num) => {
 
     if (digit > 2 && numRest1_rep && numRest2_rep) {
         let rest2Str = '';
-        ind = 2;
+        //ind = 2;
         if (numRest2_rep === 1 && _10e === 3) {
             rest2Str = 'одна';
-            ind = 0;
+            //ind = 0;
         }
         if (numRest2_rep === 2 && _10e === 3) {
             rest2Str = 'две';
-            ind = 1;
+            //ind = 1;
         }
-        if (numRest2_rep > 2) rest2Str = convert(numRest2_rep);
+        if (numRest2_rep > 2) rest2Str = convert(numRest2_rep, true);
         digitStr += `${convert(numRest1_rep)} ${rest2Str}`;
     }
 
     if (digit > 2 && numRest1_rep && !numRest2_rep) {
-        digitStr += `${convert(digit)}`;
+        digitStr += `${convert(digit, true)}`;
     }
 
     let restString = '';
