@@ -57,7 +57,7 @@ const convert = (num, recursive) => {
     }
 
     let _10e = ('' + num).length - 1;
-    while (!_10e3_10e33.has(_10e)) _10e --;
+    while (!_10e3_10e33.has(_10e)) _10e--;
 
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
@@ -65,14 +65,22 @@ const convert = (num, recursive) => {
     let lastDigit = digit % 10;
     if (lastDigit === 1) {
         ind = 0;
-    } else if (lastDigit < 5) {
+    } else if (lastDigit < 5 && lastDigit !== 0) {
         ind = 1;
     } else {
         ind = 2;
     }
     let digitStr = '';
-    if (digit === 1 && _10e >= 3) digitStr = 'одна';
-    if (digit === 2 && _10e >= 3) digitStr = 'две';
+    if (digit === 1 && _10e === 3) {
+        digitStr = 'одна';
+    } else if (digit === 1 && _10e > 3) {
+        digitStr = 'один'
+    }
+    if (digit === 2 && _10e === 3) {
+        digitStr = 'две';
+    } else if (digit === 2 && _10e > 3) {
+        digitStr = 'два'
+    }
 
     let _10e_rep = ('' + digit).length - 1;
     let numRest2_rep = +('' + digit).substr(1, _10e_rep);
