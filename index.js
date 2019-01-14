@@ -62,7 +62,8 @@ const convert = (num, recursive) => {
     const digit = Math.floor(num / 10 ** _10e);
     const rest = num - digit * 10 ** _10e;
 
-    let lastDigit = digit % 10;
+    let lastDigit = digit > 19 ? digit % 10 : digit;
+    let ind;
     if (lastDigit === 1) {
         ind = 0;
     } else if (lastDigit < 5 && lastDigit !== 0) {
@@ -87,22 +88,23 @@ const convert = (num, recursive) => {
     let numRest1_rep = digit - numRest2_rep;
 
 
-    if (digit > 2 && numRest1_rep && numRest2_rep) {
+    if (digit > 19 && numRest1_rep && numRest2_rep) {
         let rest2Str = '';
-        //ind = 2;
         if (numRest2_rep === 1 && _10e === 3) {
             rest2Str = 'одна';
-            //ind = 0;
         }
         if (numRest2_rep === 2 && _10e === 3) {
             rest2Str = 'две';
-            //ind = 1;
         }
         if (numRest2_rep > 2) rest2Str = convert(numRest2_rep, true);
         digitStr += `${convert(numRest1_rep)} ${rest2Str}`;
     }
 
     if (digit > 2 && numRest1_rep && !numRest2_rep) {
+        digitStr += `${convert(digit, true)}`;
+    }
+
+    if (digit > 10 && digit < 20) {
         digitStr += `${convert(digit, true)}`;
     }
 
