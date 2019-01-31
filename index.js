@@ -24,6 +24,13 @@ const _10e3_10e33 = new Map([
     [33, ['дециллион', 'дециллиона', 'дециллионов']]
 ]);
 
+const exponentFormToDecimal = (num) => {
+    const numStr = '' + num;
+    const isExp = numStr.includes('e');
+
+    return num;
+};
+
 const convert = (num, recursive) => {
     if (num < 20) return _0_19.get(num);
     if (num < 100) {
@@ -116,4 +123,4 @@ const convert = (num, recursive) => {
     return `${digitStr} ${_10e3_10e33.get(_10e)[ind]}${restString}`;
 };
 
-module.exports = convert;
+module.exports = { convert, exponentFormToDecimal };

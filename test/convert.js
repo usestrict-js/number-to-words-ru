@@ -1,4 +1,4 @@
-const convert = require('../index');
+const convert = require('../index').convert;
 const assert = require('assert');
 
 describe('SIMPLE DIGIT', () => {
