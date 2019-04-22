@@ -27,8 +27,19 @@ const _10e3_10e33 = new Map([
 const exponentFormToDecimal = (num) => {
     const numStr = '' + num;
     const isExp = numStr.includes('e');
+    if (isExp) {
+        const expNumArray = numStr.split('e+');
+        let _10e = +expNumArray[1];
+        const base = expNumArray[0];
+        let result = base;
+        while (_10e > 0) {
+            result += '0';
+            _10e--;
+        }
+        return result;
+    }
 
-    return num;
+    return numStr;
 };
 
 const convert = (num, recursive) => {
@@ -63,11 +74,25 @@ const convert = (num, recursive) => {
         return `${_100_900.get(num100 * 100)}${str10}${str1}`;
     }
 
-    let _10e = ('' + num).length - 1;
+    let digit;
+    let _10e;
+    const isExp = ('' + num).includes('e');
+    if (isExp) {
+        const expNumArray = ('' + num).split('e+');
+        digit = +expNumArray[0];
+        _10e = +expNumArray[1];
+    } else {
+        _10e = +num.length - 1;
+        digit = Math.floor(num / 10 ** _10e);
+    }
     while (!_10e3_10e33.has(_10e)) _10e--;
 
-    const digit = Math.floor(num / 10 ** _10e);
-    const rest = num - digit * 10 ** _10e;
+    let rest;
+    if (isExp) {
+        rest = 0;
+    } else {
+        rest = num - digit * 10 ** _10e;
+    }
 
     let lastDigit = digit > 19 ? digit % 10 : digit;
     let ind;

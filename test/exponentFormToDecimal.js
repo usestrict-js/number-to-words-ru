@@ -13,3 +13,8 @@ describe('SIMPLE DIGIT', () => {
     it('8', () => {assert.equal(exponentFormToDecimal(8), '8')});
     it('9', () => {assert.equal(exponentFormToDecimal(9), '9')});
 });
+
+describe('DIGIT 34', () => {
+    it('1e33', () => {assert.equal(exponentFormToDecimal(1e+33), '1000000000000000000000000000000000')});
+});
+
