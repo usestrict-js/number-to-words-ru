@@ -82,7 +82,7 @@ const convert = (num, recursive) => {
         digit = +expNumArray[0];
         _10e = +expNumArray[1];
     } else {
-        _10e = +num.length - 1;
+        _10e = ('' + num).length - 1;
         digit = Math.floor(num / 10 ** _10e);
     }
     while (!_10e3_10e33.has(_10e)) _10e--;
