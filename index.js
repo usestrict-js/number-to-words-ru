@@ -43,6 +43,13 @@ const exponentFormToDecimal = (num) => {
 };
 
 const convert = (num, recursive) => {
+    if (typeof num === 'number' && num > Number.MAX_SAFE_INTEGER) {
+        throw new Error("Нельзя передавать число больше Number.MAX_SAFE_INTEGER. Передайте число строкой, чтобы избежать ошибок округления.");
+    }
+
+    const isExp = ('' + num).includes('e');
+    if (isExp) throw new Error('Нельзя передавать число в exp форме. Передайте его в виде строки. 1e+4 --> "10000"');
+
     if (num < 20) return _0_19.get(num);
     if (num < 100) {
         const mod10 = num % 10;
@@ -74,25 +81,12 @@ const convert = (num, recursive) => {
         return `${_100_900.get(num100 * 100)}${str10}${str1}`;
     }
 
-    let digit;
-    let _10e;
-    const isExp = ('' + num).includes('e');
-    if (isExp) {
-        const expNumArray = ('' + num).split('e+');
-        digit = +expNumArray[0];
-        _10e = +expNumArray[1];
-    } else {
-        _10e = ('' + num).length - 1;
-        digit = Math.floor(num / 10 ** _10e);
-    }
+    let _10e = ('' + num).length - 1;
+    let digit = Math.floor(num / 10 ** _10e);
+
     while (!_10e3_10e33.has(_10e)) _10e--;
 
-    let rest;
-    if (isExp) {
-        rest = 0;
-    } else {
-        rest = num - digit * 10 ** _10e;
-    }
+    let rest = num - digit * 10 ** _10e;
 
     let lastDigit = digit > 19 ? digit % 10 : digit;
     let ind;
