@@ -82,9 +82,10 @@ const convert = (num, recursive) => {
     }
 
     let _10e = ('' + num).length - 1;
-    let digit = Math.floor(num / 10 ** _10e);
 
     while (!_10e3_10e33.has(_10e)) _10e--;
+
+    let digit = Math.floor(num / 10 ** _10e);
 
     let rest = num - digit * 10 ** _10e;
 
