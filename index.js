@@ -24,24 +24,6 @@ const _10e3_10e33 = new Map([
     [33, ['дециллион', 'дециллиона', 'дециллионов']]
 ]);
 
-const exponentFormToDecimal = (num) => {
-    const numStr = '' + num;
-    const isExp = numStr.includes('e');
-    if (isExp) {
-        const expNumArray = numStr.split('e+');
-        let _10e = +expNumArray[1];
-        const base = expNumArray[0];
-        let result = base;
-        while (_10e > 0) {
-            result += '0';
-            _10e--;
-        }
-        return result;
-    }
-
-    return numStr;
-};
-
 const convert = (num, recursive) => {
     if (typeof num === 'number' && num > Number.MAX_SAFE_INTEGER) {
         throw new Error("Нельзя передавать число больше Number.MAX_SAFE_INTEGER. Передайте число строкой, чтобы избежать ошибок округления.");
@@ -142,4 +124,4 @@ const convert = (num, recursive) => {
     return `${digitStr} ${_10e3_10e33.get(_10e)[ind]}${restString}`;
 };
 
-module.exports = { convert, exponentFormToDecimal };
+module.exports = { convert };
