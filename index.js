@@ -25,9 +25,9 @@ const _10e3_10e33 = new Map([
 ]);
 
 const convert = (num, recursive) => {
-    if (typeof num === 'number' && num > Number.MAX_SAFE_INTEGER) {
-        throw new Error("Нельзя передавать число больше Number.MAX_SAFE_INTEGER. Передайте число строкой, чтобы избежать ошибок округления.");
-    }
+    // if (typeof num === 'number' && num > Number.MAX_SAFE_INTEGER) {
+    //     throw new Error("Нельзя передавать число больше Number.MAX_SAFE_INTEGER. Передайте число строкой, чтобы избежать ошибок округления.");
+    // }
 
     const isExp = ('' + num).includes('e');
     if (isExp) throw new Error('Нельзя передавать число в exp форме. Передайте его в виде строки. 1e+4 --> "10000"');
