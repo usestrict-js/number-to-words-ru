@@ -16,7 +16,8 @@
         "no-undef": "off",
         "prefer-destructuring": "off",
         "block-spacing": "off",
-        "semi": "off"
+        "semi": "off",
+        "max-len": "off"
       }
     }
   ]
