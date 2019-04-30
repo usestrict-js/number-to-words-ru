@@ -1,0 +1,24 @@
+{
+  "extends": "airbnb/base",
+  "rules": {
+    "indent": ["error", 2],
+    "no-underscore-dangle": "off",
+    "camelcase": "off",
+    "comma-dangle": "off",
+    "prefer-template": "off",
+    "no-mixed-operators": "off",
+    "no-plusplus": "off"
+  },
+  "overrides": [
+    {
+      "files": ["test/**/*.js"],
+      "rules": {
+        "no-undef": "off",
+        "prefer-destructuring": "off",
+        "block-spacing": "off",
+        "semi": "off",
+        "max-len": "off"
+      }
+    }
+  ]
+}
