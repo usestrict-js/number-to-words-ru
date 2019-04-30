@@ -64,11 +64,10 @@ const convert = (num, recursive) => {
     }
 
     let _10e = ('' + num).length - 1;
-    let digit = Math.floor(num / 10 ** _10e);
-
     while (!_10e3_10e33.has(_10e)) _10e--;
 
-    let rest = num - digit * 10 ** _10e;
+    const digit = Math.floor(num / 10 ** _10e);
+    const rest = num - digit * 10 ** _10e;
 
     let lastDigit = digit > 19 ? digit % 10 : digit;
     let ind;
