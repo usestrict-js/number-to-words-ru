@@ -4,7 +4,8 @@
   "description": "Convert float, int numbers into words on russian language",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint \"./**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
   },
   "homepage": "https://github.com/lexantus/number-to-words-ru#readme",
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
     "mocha": "^5.2.0"
   }
 }
