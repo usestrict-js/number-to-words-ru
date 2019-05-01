@@ -7,7 +7,8 @@
     "comma-dangle": "off",
     "prefer-template": "off",
     "no-mixed-operators": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "valid-typeof": "off"
   },
   "overrides": [
     {
