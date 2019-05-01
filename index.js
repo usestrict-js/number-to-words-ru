@@ -24,7 +24,17 @@ const _10e3_10e33 = new Map([
   [33, ['дециллион', 'дециллиона', 'дециллионов']]
 ]);
 
+/* global BigInt */
 const convert = (num, recursive) => {
+  if (num === undefined) throw new Error('Нельзя передавать undefined.');
+  if (num === null) throw new Error('Нельзя передавать null.');
+  if (typeof num !== 'bigint' && Number.isNaN(+num)) throw new Error('Нужно передать число.');
+  if (typeof num === 'number' && num > Number.MAX_SAFE_INTEGER) throw new Error('Нельзя передавать число больше Number.MAX_SAFE_INTEGER. Передайте число строкой, чтобы избежать ошибок округления.');
+
+  let isNeedBigInt = false;
+  if (typeof num !== 'bigint' && +num > Number.MAX_SAFE_INTEGER) isNeedBigInt = true;
+  if (typeof num === 'bigint') isNeedBigInt = true;
+
   const isExp = ('' + num).includes('e');
   if (isExp) throw new Error('Нельзя передавать число в exp форме. Передайте его в виде строки. 1e+4 --> "10000"');
 
@@ -62,8 +72,15 @@ const convert = (num, recursive) => {
   let _10e = ('' + num).length - 1;
   while (!_10e3_10e33.has(_10e)) _10e--;
 
-  const digit = Math.floor(num / 10 ** _10e);
-  const rest = num - digit * 10 ** _10e;
+  let digit;
+  let rest;
+  if (isNeedBigInt) {
+    digit = BigInt('' + num) / BigInt(10) ** BigInt(_10e);
+    rest = BigInt('' + num) - digit * BigInt(10) ** BigInt(_10e);
+  } else {
+    digit = Math.floor(num / 10 ** _10e);
+    rest = num - digit * 10 ** _10e;
+  }
 
   const lastDigit = digit > 19 ? digit % 10 : digit;
   let ind;
@@ -86,9 +103,19 @@ const convert = (num, recursive) => {
     digitStr = 'два';
   }
 
-  const _10e_rep = ('' + digit).length - 1;
-  const numRest2_rep = +('' + digit).substr(1, _10e_rep);
-  const numRest1_rep = digit - numRest2_rep;
+  let _10e_rep;
+  let numRest2_rep;
+  let numRest1_rep;
+
+  if (isNeedBigInt) {
+    _10e_rep = ('' + digit).length - 1;
+    numRest2_rep = +('' + digit).substr(1, _10e_rep);
+    numRest1_rep = digit - BigInt(numRest2_rep);
+  } else {
+    _10e_rep = ('' + digit).length - 1;
+    numRest2_rep = +('' + digit).substr(1, _10e_rep);
+    numRest1_rep = digit - numRest2_rep;
+  }
 
 
   if (digit > 19 && numRest1_rep && numRest2_rep) {
