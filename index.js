@@ -28,7 +28,13 @@ const convert = (num, recursive) => {
   const isExp = ('' + num).includes('e');
   if (isExp) throw new Error('Нельзя передавать число в exp форме. Передайте его в виде строки. 1e+4 --> "10000"');
 
-  if (num < 20) return _0_19.get(num);
+  let negative = '';
+  if (num < 0) {
+    negative = 'минус ';
+    num = Math.abs(num);
+  }
+
+  if (num < 20) return `${negative}${_0_19.get(num)}`;
   if (num < 100) {
     const mod10 = num % 10;
     const num10 = Math.floor(num / 10);
@@ -38,7 +44,7 @@ const convert = (num, recursive) => {
     } else {
       str = mod10 === 0 ? '' : ` ${_0_19.get(mod10)}`;
     }
-    return `${_20_90.get(num10 * 10)}${str}`;
+    return `${negative}${_20_90.get(num10 * 10)}${str}`;
   }
   if (num < 1000) {
     const mod100 = num % 100;
@@ -56,7 +62,7 @@ const convert = (num, recursive) => {
     if (mod100 < 20 && mod100 !== 0) {
       str1 = ` ${_0_19.get(mod100)}`;
     }
-    return `${_100_900.get(num100 * 100)}${str10}${str1}`;
+    return `${negative}${_100_900.get(num100 * 100)}${str10}${str1}`;
   }
 
   let _10e = ('' + num).length - 1;
@@ -116,7 +122,7 @@ const convert = (num, recursive) => {
     restString = ` ${convert(rest)}`;
   }
 
-  return `${digitStr} ${_10e3_10e33.get(_10e)[ind]}${restString}`;
+  return `${negative}${digitStr} ${_10e3_10e33.get(_10e)[ind]}${restString}`;
 };
 
 module.exports = { convert };
