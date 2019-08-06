@@ -2,6 +2,8 @@ const assert = require('assert');
 const convert = require('../index').convert;
 
 describe('SIMPLE DIGIT', () => {
+  it('-0', () => {assert.equal(convert(-0), 'ноль')});
+  it('+0', () => {assert.equal(convert(+0), 'ноль')});
   it('0', () => {assert.equal(convert(0), 'ноль')});
   it('1', () => {assert.equal(convert(1), 'один')});
   it('2', () => {assert.equal(convert(2), 'два')});
